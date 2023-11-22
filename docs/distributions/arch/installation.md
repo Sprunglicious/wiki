@@ -62,4 +62,26 @@ You will need:
         2. Install a text editor (i.e. `pacman -S vim` or `pacman -S nano`), and make the following edit for `.conf` files in `/boot/efi/loader/entries/`.
         3. Add `intel_iommu=on iommu=pt pcie_ports=compat` to the `options` line to add those kernel parameters.
 
-10. Exit the `chroot` (Control-d, or `exit`) and reboot. You now will be able to select your Arch install in the macOS Startup Manager by holding option at boot.
+OPTIONAL:
+
+10. Install Wifi/Bluetooth Drivers by running the following:
+
+```sh
+git clone https://github.com/NoaHimesaka1873/apple-bcm-firmware
+cd apple-bcm-firmware
+makepkg -s
+```
+Or, grab a pre-compiled package:
+
+```sh
+wget https://mirror.funami.tech/arch-mact2/os/x86_64/apple-bcm-firmware-13.0-1-any.pkg.tar.zst
+sudo pacman -U apple-bcm-firmware-13.0-1-any.pkg.tar.zst
+```
+
+Make sure to enable Bluetooth after you install the drivers.
+
+```bash
+sudo systemctl enable bluetooth
+```
+    
+12. Exit the `chroot` (Control-d, or `exit`) and reboot. You now will be able to select your Arch install in the macOS Startup Manager by holding option at boot.
